@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text Emotion Detection</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: none;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #4a90e2;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #357ab7;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #222;
+    }
+    .happy { color: #28a745; }
+    .sad { color: #007bff; }
+    .angry { color: #dc3545; }
+    .neutral { color: #6c757d; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Text Emotion Detection</h1>
+    <textarea id="textInput" placeholder="Type your text here..."></textarea>
+    <br />
+    <button onclick="detectEmotion()">Detect Emotion</button>
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    function detectEmotion() {
+      const text = document.getElementById("textInput").value.trim();
+      const resultDiv = document.getElementById("result");
+
+      if (!text) {
+        resultDiv.innerHTML = "⚠️ Please enter some text!";
+        resultDiv.className = "result neutral";
+        return;
+      }
+
+      // 🔹 For now, simple mock logic (replace with API call later)
+      let emotion = "Neutral";
+      let cssClass = "neutral";
+
+      if (text.match(/happy|great|awesome|good|love/i)) {
+        emotion = "Happy 😊";
+        cssClass = "happy";
+      } else if (text.match(/sad|unhappy|bad|lonely|cry/i)) {
+        emotion = "Sad 😢";
+        cssClass = "sad";
+      } else if (text.match(/angry|mad|furious|hate/i)) {
+        emotion = "Angry 😡";
+        cssClass = "angry";
+      }
+
+      resultDiv.innerHTML = "Detected Emotion: " + emotion;
+      resultDiv.className = "result " + cssClass;
+    }
+  </script>
+</body>
+</html>
