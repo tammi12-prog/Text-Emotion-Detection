@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Emotion Detection</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 40px; background: #f9f9f9; }
+        h1 { color: #305abf; }
+        .container { max-width: 600px; margin: auto; background: #fff; padding: 30px 40px; border-radius: 8px; box-shadow: 0 2px 12px #ddd;}
+        textarea { width: 100%; height: 120px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #ccc; }
+        button { background: #305abf; color: #fff; border: none; padding: 12px 20px; border-radius: 4px; cursor: pointer; }
+        .result { margin-top: 30px; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Emotion Detection</h1>
+        <form method="POST" action="/predict">
+            <label for="rawtext">Enter Text:</label><br>
+            <textarea id="rawtext" name="rawtext" placeholder="Type here..." required></textarea><br>
+            <button type="submit">Submit</button>
+        </form>
+        <!-- Prediction result area -->
+        <div class="result">
+            <!-- Use template logic in Flask/Jinja or other backend to inject prediction/emotion here -->
+            {% if prediction %}
+                <strong>Detected Emotion:</strong> {{ prediction }} <br>
+                <strong>Confidence:</strong> {{ probability }}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
